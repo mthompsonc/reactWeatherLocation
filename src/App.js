@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+//import PropTypes from 'prop-types';
+//import { connect } from 'react-redux';
+//import { createStore } from 'redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import LocationList from './components/LocationList';
-import ForecastExtended from './components/ForecastExtended';
+import LocationListContainer from './containers/LocationListContainer';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
+//import { setCity } from './actions';
 import './App.css';
-
 
 const cities = [
   'Santiago, Chile',
@@ -26,11 +29,6 @@ class App extends Component {
     }
   }
 
-  handleSelectionLocation = (city) => {
-    this.setState({city});
-    console.log(`handleSelectionLocation ${city}`);
-  }
-
   render() {
     const { city } = this.state;
     return (
@@ -43,20 +41,12 @@ class App extends Component {
         </Row>
         <Row>
           <Col xs={12} md={6}>
-            <LocationList
-            cities = { cities }
-            onSelectedLocation = {this.handleSelectionLocation}>
-            </LocationList>
+            <LocationListContainer cities = {cities} ></LocationListContainer>
           </Col>
           <Col xs={12} md={6}>
             <Paper zDepth={4}>
               <div className="detail">
-              {
-                city === null ? <h2>No se seleccionó ninguna cuidad</h2> : <ForecastExtended city = {city}>
-                
-              </ForecastExtended>
-              }
-              
+              <ForecastExtendedContainer></ForecastExtendedContainer>
               </div>
             </Paper>
           </Col>
@@ -73,8 +63,9 @@ class App extends Component {
         </div>
         </MuiThemeProvider>
         */
-    );
+      );
+    }
   }
-}
+
 
 export default App;
